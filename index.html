@@ -96,6 +96,8 @@
 
 /* Violation attribution */
 .violation-actor{min-width:210px;max-width:290px;line-height:1.35}.violation-actor .role-badge{font-size:10px;padding:2px 6px;vertical-align:1px}.violation-actor .student-id{display:inline-block;margin-top:2px}.violation-actor .muted b{color:var(--text)}
+/* v1.56 · Role based workspace */
+.role-context{margin:0 6px 14px;padding:10px 11px;border-radius:12px;background:rgba(255,255,255,.07);display:flex;align-items:center;gap:9px;color:#fff}.role-context-dot{width:9px;height:9px;border-radius:50%;background:#63e6be;box-shadow:0 0 0 4px rgba(99,230,190,.12)}.role-context b{display:block;font-size:12px}.role-context small{display:block;color:#aebbd1;font-size:10px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px}.nav-group{display:grid;gap:5px;margin-bottom:8px}.nav-group-label{padding:8px 11px 3px;color:#7184a5;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.75px}.nav-group[hidden]{display:none!important}.role-home{margin-bottom:16px;padding:14px 16px;display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,color-mix(in srgb,var(--primary) 8%,var(--panel)),var(--panel))}.role-home-icon{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:color-mix(in srgb,var(--primary) 12%,var(--panel));font-size:20px}.role-home-main{min-width:0}.role-home-main b{display:block;font-size:14px}.role-home-main small{display:block;color:var(--muted);font-size:12px;margin-top:3px}.role-quick-actions{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.role-quick-actions .btn{white-space:nowrap}.scope-chip{display:inline-flex;align-items:center;gap:6px;padding:5px 8px;border-radius:999px;background:var(--bg);border:1px solid var(--line);font-size:11px;color:var(--muted);font-weight:700}@media(max-width:900px){.role-home{align-items:flex-start;flex-wrap:wrap}.role-quick-actions{width:100%;margin-left:0;justify-content:flex-start}.role-context{margin-bottom:10px}.nav-group-label{padding-left:12px}}
 </style>
 </head>
 <body>
@@ -105,20 +107,31 @@
       <div class="brand-mark">NN</div>
       <div><strong>Nề nếp</strong><span id="brandYear">2026–2027</span></div>
     </div>
+    <div class="role-context" id="roleContext"><span class="role-context-dot"></span><div><b id="roleContextName">Quản trị</b><small id="roleContextScope">Toàn trường</small></div></div>
     <nav id="nav">
-      <button class="nav-item active" data-page="dashboard"><span>⌂</span>Tổng quan</button>
-      <button class="nav-item" data-page="violations"><span>!</span>Ghi nhận vi phạm</button>
-      <button class="nav-item" data-page="scores"><span>✓</span>Cờ đỏ & SĐB</button>
-      <button class="nav-item" data-page="weekly"><span>★</span>Thi đua tuần</button>
-      <button class="nav-item" data-page="year"><span>▦</span>Tháng & năm</button>
-      <button class="nav-item" data-page="students"><span>♙</span>Học sinh</button>
-      <button class="nav-item" data-page="classes"><span>▣</span>Lớp & GVCN</button>
-      <button class="nav-item" data-page="studentwatch"><span>⚠</span>Theo dõi HS</button>
-      <button class="nav-item" data-page="homeroomreport"><span>▤</span>Báo cáo GVCN</button>
-      <button class="nav-item" data-page="accounts"><span>♜</span>Tài khoản & quyền</button>
-      <button class="nav-item" data-page="audit"><span>⌁</span>Nhật ký & dữ liệu</button>
-      <button class="nav-item" data-page="online"><span>☁</span>Online</button>
-      <button class="nav-item" data-page="settings"><span>⚙</span>Cấu hình</button>
+      <div class="nav-group" data-nav-group="home"><div class="nav-group-label">Tổng quan</div>
+        <button class="nav-item active" data-page="dashboard"><span>⌂</span>Tổng quan</button>
+      </div>
+      <div class="nav-group" data-nav-group="discipline"><div class="nav-group-label">Nề nếp</div>
+        <button class="nav-item" data-page="violations"><span>!</span>Ghi nhận vi phạm</button>
+        <button class="nav-item" data-page="scores"><span>✓</span>Cờ đỏ & SĐB</button>
+        <button class="nav-item" data-page="weekly"><span>★</span>Thi đua tuần</button>
+        <button class="nav-item" data-page="year"><span>▦</span>Tháng & năm</button>
+      </div>
+      <div class="nav-group" data-nav-group="students"><div class="nav-group-label">Học sinh</div>
+        <button class="nav-item" data-page="students"><span>♙</span>Học sinh</button>
+        <button class="nav-item" data-page="studentwatch"><span>⚠</span>Theo dõi HS</button>
+        <button class="nav-item" data-page="homeroomreport"><span>▤</span>Báo cáo GVCN</button>
+      </div>
+      <div class="nav-group" data-nav-group="manage"><div class="nav-group-label">Quản lý</div>
+        <button class="nav-item" data-page="classes"><span>▣</span>Lớp & GVCN</button>
+        <button class="nav-item" data-page="accounts"><span>♜</span>Tài khoản & quyền</button>
+        <button class="nav-item" data-page="audit"><span>⌁</span>Nhật ký & dữ liệu</button>
+      </div>
+      <div class="nav-group" data-nav-group="system"><div class="nav-group-label">Hệ thống</div>
+        <button class="nav-item" data-page="online"><span>☁</span>Online</button>
+        <button class="nav-item" data-page="settings"><span>⚙</span>Cấu hình</button>
+      </div>
     </nav>
     <div class="sidebar-foot">
       <div class="privacy-dot"></div><span id="privacyStatus">Local cache · Firebase chưa đăng nhập</span>
@@ -234,7 +247,7 @@ const DEFAULT_USERS=[{id:'USR-LOCAL-ADMIN',name:'Quản trị cục bộ',email:
 const SCHEMA_VERSION=16;const CLOUD_COLLECTIONS=['schoolYears','classes','students','violations','violationAudit','weeklyScores','monthAdjustments','monthCatalog','weekStatuses','monthStatuses','yearAdjustments','auditLogs','users','config'];
 const FIREBASE_CONFIG={apiKey:'AIzaSyB3kNNPdXuI41hfsoZheNGflwlWpzgFeu0',authDomain:'doantruonglequangchi.firebaseapp.com',projectId:'doantruonglequangchi',storageBucket:'doantruonglequangchi.firebasestorage.app',messagingSenderId:'421969721637',appId:'1:421969721637:web:3523bfecb0129da70ec2cc',measurementId:'G-4HHG39VSZC'};
 let cloudRuntime={sdkReady:false,auth:null,db:null,user:null,profile:null,onlineMode:false,suppress:false,syncTimer:null,syncing:false,pending:false,conflict:false,largePending:false,remoteChanged:false,lastError:'',lastSyncAt:'',snapshots:{},revisions:{},globalSnapshot:null,yearUnsub:null,configUnsub:null,cloudUsers:[],legacyAttributionCount:0,projectId:FIREBASE_CONFIG.projectId};
-function defaultSyncMeta(){return {deviceId:'DEV-'+Math.random().toString(36).slice(2,10).toUpperCase(),revision:0,lastSavedAt:'',cloudReadyVersion:'1.5.5'}}
+function defaultSyncMeta(){return {deviceId:'DEV-'+Math.random().toString(36).slice(2,10).toUpperCase(),revision:0,lastSavedAt:'',cloudReadyVersion:'1.5.6'}}
 const DEFAULT_MONTH_CATALOG=[
  {id:'reg-performance',month:0,name:'Văn nghệ/hoạt động khuyến khích – tiết mục tham gia',kind:'plus',points:50,unit:'tiết mục',official:true,note:'Theo mục khuyến khích, khen thưởng.'},
  {id:'reg-bulletin-member',month:0,name:'Trang trí bảng tin – thành viên tham gia',kind:'plus',points:10,unit:'HS',official:true,note:'Tính theo danh sách được phê duyệt.'},
@@ -539,7 +552,31 @@ function fillSchoolYears(){
 }
 function fillWeeks(){const s=$('#globalWeek');if(!s)return;if(week>getWeekCount())week=getWeekCount();s.innerHTML=weekOptions(week,true);s.value=week;s.onchange=()=>{week=num(s.value);render()}}
 function bindNav(){ $$('.nav-item').forEach(b=>b.onclick=()=>{page=b.dataset.page;$$('.nav-item').forEach(x=>x.classList.toggle('active',x===b));$('#sidebar').classList.remove('open');render()});$('#menuBtn').onclick=()=>$('#sidebar').classList.toggle('open');$('#themeBtn').onclick=()=>{state.theme=state.theme==='dark'?'light':'dark';save();setTheme()};const cb=$('#cloudAuthBtn');if(cb)cb.onclick=openCloudAuthModal}
-function applyNavPermissions(){const need={dashboard:'view',violations:'violation',scores:'score',weekly:'view',year:'view',students:'students',classes:'classes',studentwatch:'students',homeroomreport:'reports',accounts:'accounts',audit:'audit',online:'view',settings:'settings'};$$('.nav-item').forEach(b=>{const a=need[b.dataset.page];b.style.display=a&&!userCan(a)?'none':''});if(need[page]&&!userCan(need[page]))page='dashboard'}
+const PAGE_PERMISSION={dashboard:'view',violations:'violation',scores:'score',weekly:'view',year:'view',students:'students',classes:'classes',studentwatch:'students',homeroomreport:'reports',accounts:'accounts',audit:'audit',online:'view',settings:'settings'};
+const ROLE_PAGE_PROFILE={
+ superadmin:['dashboard','violations','scores','weekly','year','students','studentwatch','homeroomreport','classes','accounts','audit','online','settings'],
+ admin:['dashboard','violations','scores','weekly','year','students','studentwatch','homeroomreport','classes','accounts','audit','online','settings'],
+ doantruong:['dashboard','violations','scores','weekly','year','students','studentwatch','homeroomreport','classes','audit'],
+ giamthi:['dashboard','violations','homeroomreport'],
+ gvcn:['dashboard','violations','scores','students','studentwatch','homeroomreport','weekly','year'],
+ teacher:['dashboard','violations','homeroomreport','weekly','year'],
+ bgh:['dashboard','weekly','year','homeroomreport','audit'],
+ viewer:['dashboard','weekly','year','homeroomreport']
+};
+const ROLE_HOME_ACTIONS={
+ superadmin:[['violations','+ Ghi vi phạm'],['accounts','Tài khoản'],['audit','Nhật ký']],
+ admin:[['violations','+ Ghi vi phạm'],['accounts','Tài khoản'],['audit','Nhật ký']],
+ doantruong:[['violations','+ Ghi vi phạm'],['weekly','Thi đua tuần'],['year','Tháng & năm']],
+ giamthi:[['violations','+ Ghi vi phạm'],['homeroomreport','Tra cứu báo cáo']],
+ gvcn:[['students','Học sinh lớp'],['studentwatch','HS cần chú ý'],['homeroomreport','Báo cáo lớp']],
+ teacher:[['violations','+ Ghi vi phạm'],['homeroomreport','Báo cáo lớp']],
+ bgh:[['weekly','Thi đua tuần'],['year','Tháng & năm'],['audit','Nhật ký']],
+ viewer:[['weekly','Thi đua tuần'],['year','Tháng & năm']]
+};
+function rolePageAllowed(pg,u=currentUser()){const list=ROLE_PAGE_PROFILE[u?.role]||ROLE_PAGE_PROFILE.viewer;return list.includes(pg)}
+function roleScopeText(u=currentUser()){if(isClassScopedRole(u.role)){const names=(u.classIds||[]).map(id=>Object.keys(state.classMeta||{}).find(c=>state.classMeta[c]?.id===id)||id).filter(Boolean);return names.length?`Phụ trách: ${names.join(', ')}`:'Chưa được gán lớp'}if(u.role==='viewer')return 'Chỉ xem dữ liệu tổng hợp';return 'Phạm vi toàn trường'}
+function updateRoleWorkspace(){const u=currentUser(),name=$('#roleContextName'),scope=$('#roleContextScope');if(name)name.textContent=roleLabel(u.role);if(scope)scope.textContent=roleScopeText(u);$$('.nav-group').forEach(g=>{const visible=[...g.querySelectorAll('.nav-item')].some(b=>b.style.display!=='none');g.hidden=!visible})}
+function applyNavPermissions(){const u=currentUser();$$('.nav-item').forEach(b=>{const pg=b.dataset.page,a=PAGE_PERMISSION[pg],ok=rolePageAllowed(pg,u)&&(!a||userCan(a));b.style.display=ok?'':'none'});if(!rolePageAllowed(page,u)||(PAGE_PERMISSION[page]&&!userCan(PAGE_PERMISSION[page])))page='dashboard';$$('.nav-item').forEach(x=>x.classList.toggle('active',x.dataset.page===page));updateRoleWorkspace()}
 function rankBadge(r){return `<span class="rank ${r===1?'r1':r===2?'r2':r===3?'r3':''}">${r}</span>`}
 function studentViolationOnly(v){return !!(v&&v.scope!=='class'&&v.student&&v.student!=='Cả lớp')}
 function allStudentProfiles(){return Object.values(state.studentMeta||{}).filter(Boolean)}
@@ -602,12 +639,25 @@ function openStudentProfile(cls,student,sem=watchSemester){
  $('#modalRoot').innerHTML=`<div class="modal-backdrop"><div class="modal modal-wide"><div class="modal-head"><div><h3>Hồ sơ nề nếp học sinh</h3><div class="modal-sub">${esc(semesterLabel(sem))}</div></div><span class="spacer"></span><button class="icon-btn" id="closeStudentProfile">×</button></div><div class="modal-body"><div class="profile-head"><div><div class="profile-name">${esc(student)}</div><div class="profile-meta">Lớp ${esc(cls)} · Khối ${esc(gradeOf(cls))}</div></div><div><span class="conduct-pill ${conductClass(x.suggested)}">${esc(x.suggested)}</span> <span class="status-pill ${x.statusClass}">${esc(x.status)}</span></div></div><div class="profile-metrics"><div class="profile-metric"><span>Số lỗi/lượt</span><strong>${fmt(x.count)}</strong></div><div class="profile-metric"><span>Điểm trừ</span><strong class="danger-text">−${fmt(x.points)}</strong></div><div class="profile-metric"><span>Điện thoại</span><strong>${fmt(x.phoneCount)}</strong></div><div class="profile-metric"><span>Hạ 1 bậc</span><strong>${fmt(x.downgradeSteps)}</strong></div></div><div class="criteria-box">Gợi ý hỗ trợ GVCN; xếp loại chính thức do nhà trường quyết định.</div>${x.reasons.length?`<h4 style="margin:0 0 8px">Lý do cảnh báo</h4><div class="reason-list">${x.reasons.map(r=>`<div class="reason-item">⚠ ${esc(r)}</div>`).join('')}</div>`:''}<h4 style="margin:16px 0 4px">Lịch sử vi phạm</h4><div class="timeline">${records.map(v=>`<div class="timeline-item"><div class="timeline-week">Tuần ${v.week}<br><span class="muted">${esc(v.day||'')}</span></div><div class="timeline-content"><b>${v.ruleCode?`TT ${esc(v.ruleCode)} · `:''}${esc(v.content)}</b><small>${esc(v.category||'')} · ${esc(v.handling||'Chưa ghi xử lý')}${v.note?` · ${esc(v.note)}`:''}</small>${v.discipline?`<span class="official-handling">⚠ ${esc(v.discipline)}</span>`:''}</div><div class="right danger-text">−${fmt(v.totalPoints)}</div></div>`).join('')||'<div class="empty">Chưa có vi phạm trong khoảng thời gian đã chọn.</div>'}</div></div><div class="modal-foot"><button class="btn secondary" id="closeStudentProfile2">Đóng</button><button class="btn" id="addFromProfile">+ Nhập lỗi cho học sinh</button></div></div></div>`;
  const close=()=>$('#modalRoot').innerHTML='';$('#closeStudentProfile').onclick=close;$('#closeStudentProfile2').onclick=close;$('#addFromProfile').onclick=()=>{close();openQuickViolationModal({className:cls,week:week,selectedStudents:[student]})};
 }
+function roleDashboardMeta(u=currentUser()){
+ const scoped=isClassScopedRole(u.role),scope=scoped?(classes.length===1?`Lớp ${classes[0]}`:`${classes.length} lớp được phân công`):u.role==='viewer'?'Dữ liệu tổng hợp':'Toàn trường';
+ const titleText=scoped?'Tổng quan lớp':'Tổng quan';
+ const sub=scoped?`${scope} · Tuần ${week}`:`${scope} · Tuần ${week}`;
+ const icon=u.role==='giamthi'?'🛡':u.role==='doantruong'?'★':u.role==='gvcn'?'👥':u.role==='teacher'?'✎':u.role==='bgh'?'▦':u.role==='viewer'?'◉':'⚙';
+ return {scope,titleText,sub,icon};
+}
+function roleHomePanel(u=currentUser()){
+ const m=roleDashboardMeta(u),actions=(ROLE_HOME_ACTIONS[u.role]||[]).filter(([pg])=>rolePageAllowed(pg,u)&&(!PAGE_PERMISSION[pg]||userCan(PAGE_PERMISSION[pg])));
+ const actionHtml=actions.map(([pg,label],i)=>`<button class="btn ${i?'secondary':''} small" data-role-go="${pg}">${esc(label)}</button>`).join('');
+ return `<div class="card role-home"><div class="role-home-icon">${m.icon}</div><div class="role-home-main"><b>${esc(roleLabel(u.role))}</b><small>${esc(roleScopeText(u))}</small></div><span class="scope-chip">Tuần ${week}</span><div class="role-quick-actions">${actionHtml}</div></div>`;
+}
+function bindRoleHomeActions(){$$('[data-role-go]').forEach(b=>b.onclick=()=>{const pg=b.dataset.roleGo;if(!rolePageAllowed(pg)||PAGE_PERMISSION[pg]&&!userCan(PAGE_PERMISSION[pg]))return;page=pg;render()})}
 function dashboard(){
- title('Tổng quan',`Theo dõi nề nếp toàn trường · Tuần ${week}`);
+ const user=currentUser(),meta=roleDashboardMeta(user);title(meta.titleText,meta.sub);
  const vv=state.violations.filter(v=>num(v.week)===week), pts=vv.reduce((s,v)=>s+num(v.totalPoints),0), cl=new Set(vv.map(v=>v.className)).size, st=new Set(vv.filter(v=>v.scope!=='class'&&v.student!=='Cả lớp').map(v=>v.className+'|'+v.student)).size;
  const rank=rankAllForWeek(week); const top=classes.map(c=>({c,score:weeklyTotal(c,week),ded:deductions(c,week),rank:rank[c]})).sort((a,b)=>a.rank-b.rank).slice(0,10);
  const byGrade=[10,11,12].map(g=>{const cs=gradeClasses(g);return {g,val:cs.length?cs.reduce((s,c)=>s+weeklyTotal(c,week),0)/cs.length:0}}); const max=Math.max(1,...byGrade.map(x=>Math.abs(x.val)));
- $('#content').innerHTML=`
+ $('#content').innerHTML=`${roleHomePanel(user)}
  <div class="grid kpis">
   <div class="card kpi" style="--kpi:#1b5cff"><div class="label">Lượt vi phạm</div><div class="value">${vv.length}</div><div class="foot">Tuần ${week}</div></div>
   <div class="card kpi" style="--kpi:#dc3545"><div class="label">Điểm trừ</div><div class="value">${fmt(pts)}</div><div class="foot">Tự động cộng từ vi phạm</div></div>
@@ -615,10 +665,10 @@ function dashboard(){
   <div class="card kpi" style="--kpi:#0f9d6a"><div class="label">Học sinh vi phạm</div><div class="value">${st}</div><div class="foot">Tổng ${currentStudentTotal().toLocaleString('vi-VN')} học sinh</div></div>
  </div>
  <div class="section-grid">
-  <div class="card"><div class="card-head"><h3>Xếp hạng tuần ${week}</h3><span class="sub">Cờ đỏ + SĐB + điểm cộng − điểm trừ</span><span class="spacer"></span><button class="btn small secondary" data-go="weekly">Xem đầy đủ</button></div><div class="table-wrap"><table><thead><tr><th>Hạng</th><th>Lớp</th><th>Khối</th><th class="right">Điểm trừ</th><th class="right">Tổng điểm</th></tr></thead><tbody>${top.map(x=>`<tr><td>${rankBadge(x.rank)}</td><td><b>${x.c}</b></td><td>Khối ${gradeOf(x.c)}</td><td class="right negative">−${fmt(x.ded)}</td><td class="right score">${fmt(x.score)}</td></tr>`).join('')}</tbody></table></div></div>
+  <div class="card"><div class="card-head"><h3>${isClassScopedRole(user.role)?'Tổng hợp tuần '+week:'Xếp hạng tuần '+week}</h3><span class="sub">Cờ đỏ + SĐB + điểm cộng − điểm trừ</span><span class="spacer"></span><button class="btn small secondary" data-go="weekly">Xem đầy đủ</button></div><div class="table-wrap"><table><thead><tr><th>Hạng</th><th>Lớp</th><th>Khối</th><th class="right">Điểm trừ</th><th class="right">Tổng điểm</th></tr></thead><tbody>${top.map(x=>`<tr><td>${rankBadge(x.rank)}</td><td><b>${x.c}</b></td><td>Khối ${gradeOf(x.c)}</td><td class="right negative">−${fmt(x.ded)}</td><td class="right score">${fmt(x.score)}</td></tr>`).join('')}</tbody></table></div></div>
   <div class="card"><div class="card-head"><h3>Điểm trung bình theo khối</h3></div><div class="bar-list">${byGrade.map(x=>`<div class="bar-row"><b>Khối ${x.g}</b><div class="bar-track"><div class="bar-fill" style="width:${Math.max(2,Math.abs(x.val)/max*100)}%"></div></div><div class="right score">${fmt(x.val)}</div></div>`).join('')}</div><div class="card-head"><h3>Ghi nhận gần đây</h3></div><div class="table-wrap"><table><tbody>${vv.slice().sort((a,b)=>b.createdAt.localeCompare(a.createdAt)).slice(0,6).map(v=>`<tr><td><b>${esc(v.className)}</b><br><span class="muted">${esc(v.student)}</span></td><td>${esc(v.content)}</td><td class="right negative">−${fmt(v.totalPoints)}</td></tr>`).join('')||'<tr><td class="empty">Chưa có vi phạm tuần này.</td></tr>'}</tbody></table></div></div>
  </div>`;
- $('[data-go="weekly"]')?.addEventListener('click',()=>{page='weekly';$$('.nav-item').forEach(x=>x.classList.toggle('active',x.dataset.page==='weekly'));render()});
+ $('[data-go="weekly"]')?.addEventListener('click',()=>{page='weekly';render()});bindRoleHomeActions();
 }
 function normalizeText(s){return String(s??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').replace(/Đ/g,'D').toLowerCase()}
 function studentViolationStats(cls,student,w=week){
@@ -1080,7 +1130,7 @@ function auditPage(){
 
 function buildCloudPackage(){
  syncActiveYearStore();const years={};Object.entries(state.yearStore||{}).forEach(([yearId,d0])=>{const d=clone(d0),cm=normalizeClassMeta(d.classMeta,d.roster,yearId),sm=normalizeStudentMeta(d.roster,d.studentMeta,yearId);Object.values(sm).forEach(p=>{p.classId=cm[p.className]?.id||p.classId||''});const vvFull=attachStudentIds(d.violations||[],sm).map(v=>Object.assign({},v,{yearId,classId:cm[v.className]?.id||v.classId||''})),vv=vvFull.map(violationPublicCopy),violationAudit=vvFull.map(violationAuditCopy).filter(Boolean);const scoreKeys=new Set(Object.keys(d.scores||{}));(d.violations||[]).forEach(v=>{if(v.className&&num(v.week)>0)scoreKeys.add(`${v.className}|${num(v.week)}`)});const scores=[...scoreKeys].map(key=>{const [className,weekNo]=key.split('|'),val=d.scores?.[key]||{},cid=cm[className]?.id||'',u=currentUser(),remoteOnly=cloudRuntime?.onlineMode&&isClassScopedRole(u.role)&&!u.classIds.includes(cid),ded=remoteOnly&&val.cloudDeductions!==undefined?num(val.cloudDeductions):(d.violations||[]).filter(v=>v.className===className&&num(v.week)===num(weekNo)).reduce((t,v)=>t+num(v.totalPoints),0),total=remoteOnly&&val.cloudTotal!==undefined?num(val.cloudTotal):num(val.codo)+num(val.sdb)+num(val.bonus)-ded;return {id:`${cid||className}-W${weekNo}`,yearId,classId:cid,className,week:num(weekNo),codo:num(val.codo),sdb:num(val.sdb),bonus:num(val.bonus),deductions:ded,total}});const monthAdjustments=(d.monthAdjustments||[]).map(x=>Object.assign({},x,{classId:cm[x.className]?.id||x.classId||''}));Object.entries(d.bonuses||{}).forEach(([key,value])=>{const [className,monthNo]=key.split('|'),v=num(value);if(!v)return;monthAdjustments.push({id:`LEGACY-${cm[className]?.id||className}-M${monthNo}`,yearId,classId:cm[className]?.id||'',className,month:num(monthNo),catalogId:'legacy-month-adjustment',name:'Điểm tháng từ dữ liệu phiên bản cũ',kind:v>=0?'plus':'minus',quantity:1,pointsPerUnit:Math.abs(v),totalPoints:Math.abs(v),note:'Tự động chuyển đổi khi xuất cloud',legacy:true})});const weekStatuses=Object.entries(d.weekStatuses||{}).map(([weekNo,status])=>({id:`W${weekNo}`,yearId,week:num(weekNo),status}));const monthStatuses=Object.entries(d.monthStatuses||{}).map(([monthNo,status])=>({id:`M${monthNo}`,yearId,month:num(monthNo),status}));years[yearId]={classes:Object.values(cm),students:Object.values(sm),violations:vv,violationAudit,weeklyScores:scores,monthAdjustments,monthCatalog:d.monthCatalog||[],weekStatuses,monthStatuses,yearAdjustments:Object.entries(d.yearAdjustments||{}).map(([className,val])=>({id:cm[className]?.id||className,classId:cm[className]?.id||'',className,...val})),auditLogs:d.auditLog||[]}});
- return {meta:{app:'Nề nếp THPT',appVersion:'1.5.5',schemaVersion:SCHEMA_VERSION,exportedAt:new Date().toISOString(),deviceId:state.sync?.deviceId||'',revision:num(state.sync?.revision)},config:{ruleCatalogVersion:state.ruleCatalogVersion,rules:state.rules,handling:state.handling},schoolYears:state.schoolYears||[],users:state.users||[],years};
+ return {meta:{app:'Nề nếp THPT',appVersion:'1.5.6',schemaVersion:SCHEMA_VERSION,exportedAt:new Date().toISOString(),deviceId:state.sync?.deviceId||'',revision:num(state.sync?.revision)},config:{ruleCatalogVersion:state.ruleCatalogVersion,rules:state.rules,handling:state.handling},schoolYears:state.schoolYears||[],users:state.users||[],years};
 }
 function downloadCloudPackage(){const pkg=buildCloudPackage(),blob=new Blob([JSON.stringify(pkg,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`cloud-import-ne-nep-${state.activeSchoolYear}-schema-${SCHEMA_VERSION}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);logAudit('cloud_export','system',`Xuất gói cloud schema ${SCHEMA_VERSION}`,{revision:state.sync?.revision});save();toast('Đã xuất gói dữ liệu chuẩn hóa cho cloud')}
 function onlineReadiness(){
